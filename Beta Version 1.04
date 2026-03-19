@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pokemon TCG Indonesia</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+button{
+padding:10px;
+margin:10px;
+background:red;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+display:inline-block;
+width:250px;
+}
+
+img{
+width:150px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Pokemon TCG Indonesia</h1>
+
+<h2>Select a Set</h2>
+
+<div id="sets"></div>
+
+<h2>Cards</h2>
+
+<div id="cards"></div>
+
+<h2>Listings</h2>
+
+<div id="listings"></div>
+
+<script>
+
+const sets = [
+
+"Ikatan Takdir",
+"Evolusi Mega"
+
+];
+
+const cards = [
+
+{
+name:"Caterpie 001/139",
+set:"Ikatan Takdir",
+price:"Rp800",
+img:"https://asia.pokemon-card.com/id/card-img/id00015676.png"
+},
+
+{
+name:"Metapod 002/139",
+set:"Ikatan Takdir",
+price:"Rp900",
+img:"https://asia.pokemon-card.com/id/card-img/id00015677.png"
+},
+
+{
+name:"Butterfree 003/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015678.png"
+},
+  
+ {
+name:"Paras 004/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015679.png"
+},
+
+{
+name:"Parasect 005/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015680.png"
+},
+
+{
+name:"Yanma 006/139",
+set:"Ikatan Takdir",
+price:"Rp600",
+img:"https://asia.pokemon-card.com/id/card-img/id00015681.png"
+},
+
+{
+name:"Yanmega ex 007/139",
+set:"Ikatan Takdir",
+price:"Rp5.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015682.png"
+},
+
+{
+name:"Shaymin 008/139",
+set:"Ikatan Takdir",
+price:"Rp10.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015683.png"
+},
+
+{
+name:"Maractus 009/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015684.png"
+},
+  
+ {
+name:"Dwebble 010/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015685.png"
+},
+
+{
+name:"Crustle 011/139",
+set:"Ikatan Takdir",
+price:"Rp3.500",
+img:"https://asia.pokemon-card.com/id/card-img/id00015686.png"
+},
+
+{
+name:"Karrablast 012/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015687.png"
+},
+{
+name:"Mega Gardevoir ex Sar",
+  set:"Evolusi Mega",
+price:"Rp1.000.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00016685.png"
+}
+
+];
+
+
+const listings = {
+
+"Caterpie 001/139":[
+{
+seller:"Scorphex",
+price:"Rp800",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/scorphex/sv9s-caterpie-001-139-c-ikatan-takdir-kartu-pokemon-tcg-trading-card-game-indonesia-1731188217176819162?utm_campaign=PDP-z5fb7zq4pa1s-16595086012-0&utm_source=salinlink&utm_medium=share"
+}
+],
+
+"Metapod 002/139":[
+{
+seller:"Scorphex",
+price:"Rp900",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/scorphex/sv9s-metapod-002-139-c-ikatan-takdir-kartu-pokemon-tcg-trading-card-game-indonesia-1731188242936006106?utm_campaign=PDP-tsunkpo7y9h7-16595086085-0&utm_source=salinlink&utm_medium=share"
+}
+],
+
+  "Butterfree 003/139":[
+{
+  seller:"Top Deck",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/butterfree-u-003-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172132381754855?utm_campaign=PDP-pioq8jkhewp6-100267405684-0&utm_source=salinlink&utm_medium=share"
+}
+],
+  
+"Paras 004/139":[
+{
+seller:"Team Roket",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/teamroket/pokemon-tcg-indonesia-ikatan-takdir-sv9s-paras-004-139-1731187810860959475?extParam=ivf%3Dfalse%26keyword%3Dparas%26search_id%3D20260319025111432ACA3A1E345E374TLS%26src%3Dsearch&t_id=1773887102753&t_st=7&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+],
+
+"Parasect 005/139":[
+{
+seller:"Topdeck",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/parasect-c-005-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172161697121767?utm_campaign=PDP-0g9zkid8ekxk-100267405869-0&utm_source=salinlink&utm_medium=share"
+}
+],
+
+  "Yanma 006/139":[
+{
+  seller:"Scorphex",
+price:"Rp600",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/scorphex/sv9s-yanma-006-139-c-ikatan-takdir-kartu-pokemon-tcg-trading-card-game-indonesia-1731188242085021146?utm_campaign=PDP-efzu1es4afiv-16595086054-0&utm_source=salinlink&utm_medium=share"
+}
+],
+  
+"Yanmega ex 007/139":[
+ {
+seller:"Topdeck",
+price:"Rp5.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/yanmega-ex-rr-007-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172171244996071?extParam=ivf%3Dfalse%26keyword%3Dyanmega+ex%26search_id%3D202603190548265B8ADD2A5D98B1297GI6%26src%3Dsearch&t_id=1773898901928&t_st=3&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+],
+
+"Shaymin 008/139":[
+{
+seller:"Topdeck",
+price:"Rp10.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/shaymin-u-008-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731171995360593383?extParam=ivf%3Dfalse%26keyword%3Dshaymin%26search_id%3D2026031905503734ED066DF378EF25BMWO%26src%3Dsearch"
+}
+],
+
+"Maractus 009/139":[
+{
+  seller:"pansosser",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/pansosser/pokemon-tcg-indonesia-ikatan-takdir-sv9s-maractus-009-139-1731187915876697534?extParam=ivf%3Dfalse%26keyword%3Dmaractus%26search_id%3D202603190551375B8ADD2A5D98B10604ES%26src%3Dsearch"
+}
+],
+  
+"Dwebble 010/139":[
+{
+seller:"Top Deck",
+price:"Rp2.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/dwebble-c-010-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172161263011303?extParam=ivf%3Dfalse%26keyword%3Ddwebble%26search_id%3D20260319055253CD00692C3BFE592D4WGC%26src%3Dsearch"
+}
+],
+
+"Crustle 011/139":[
+{
+seller:"Felt Tcg",
+price:"Rp3.500",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/felt/crustle-014-193-holo-impian-ex-ma3-kartu-pokemon-indonesia-1731236726851536027?extParam=ivf%3Dfalse%26keyword%3Dcrustle%26search_id%3D202603190557508C19F571E251E633BQZE%26src%3Dsearch"
+}
+],
+
+  "Karrablast 012/139":[
+{
+  seller:"Topdeck",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/karrablast-c-012-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172171781408231?extParam=ivf%3Dfalse%26keyword%3Dkarrablast%26search_id%3D202603190600018E98D81F821730224TWD%26src%3Dsearch"
+}
+],"Mega Gardevoir ex Sar":[
+{
+seller:"Felt Tcg",
+price:"Rp1.000.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/felt/mega-gardevoir-ex-174-126-sar-evolusi-mega-ma1-kartu-pokemon-indonesia-1732665929498264731?extParam=ivf%3Dfalse%26keyword%3Dmega+gardevoir+sar%26search_id%3D20260316113210DB8E1AF0CB3ACA3AEHAW%26src%3Dsearch&t_id=1773660750790&t_st=1&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+]
+
+};
+
+
+
+function showSets(){
+
+let html="";
+
+sets.forEach(set=>{
+
+html+=`
+
+<button onclick="showSetCards('${set}')">
+${set}
+</button>
+
+`;
+
+});
+
+document.getElementById("sets").innerHTML=html;
+
+}
+
+
+function showSetCards(setName){
+
+let filtered = cards.filter(card => card.set === setName);
+
+let html="";
+
+filtered.forEach(card=>{
+
+html+=`
+
+<div class="card">
+
+<img src="${card.img}">
+
+<h3>${card.name}</h3>
+
+<p>${card.price}</p>
+
+<button onclick="showListings('${card.name}')">
+View Listings
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cards").innerHTML=html;
+
+}
+
+
+function showListings(cardName){
+
+let cardListings = listings[cardName];
+
+let html="<h3>"+cardName+" Listings</h3>";
+
+cardListings.forEach(listing=>{
+
+html+=`
+
+<div class="card">
+
+<p>${listing.seller}</p>
+
+<p>${listing.price}</p>
+
+<p>${listing.platform}</p>
+
+<a href="${listing.link}" target="_blank">
+<button>Buy</button>
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("listings").innerHTML=html;
+
+}
+
+showSets();
+
+</script>
+
+</body>
+
+</html>
