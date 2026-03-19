@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pokemon TCG Indonesia</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+button{
+padding:10px;
+margin:10px;
+background:red;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+display:inline-block;
+width:250px;
+}
+
+img{
+width:150px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Pokemon TCG Indonesia</h1>
+
+<h2>Select a Set</h2>
+
+<div id="sets"></div>
+
+<h2>Cards</h2>
+
+<div id="cards"></div>
+
+<h2>Listings</h2>
+
+<div id="listings"></div>
+
+<script>
+
+const sets = [
+
+"Ikatan Takdir",
+"Evolusi Mega",
+"Korbaran Biru"
+
+];
+
+const cards = [
+
+{
+name:"Caterpie 001/139",
+set:"Ikatan Takdir",
+price:"Rp800",
+img:"https://asia.pokemon-card.com/id/card-img/id00015676.png"
+},
+
+{
+name:"Metapod 002/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015677.png"
+},
+
+{
+name:"Butterfree 003/139",
+set:"Ikatan Takdir",
+price:"Rp1.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00015678.png"
+},
+
+{
+name:"Mega Gardevoir ex Sar",
+  set:"Evolusi Mega",
+price:"Rp1.000.000",
+img:"https://asia.pokemon-card.com/id/card-img/id00016685.png"
+}
+
+];
+
+
+const listings = {
+
+"Caterpie 001/139":[
+{
+seller:"Scorphex",
+price:"Rp800",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/scorphex/sv9s-caterpie-001-139-c-ikatan-takdir-kartu-pokemon-tcg-trading-card-game-indonesia-1731188217176819162?utm_campaign=PDP-z5fb7zq4pa1s-16595086012-0&utm_source=salinlink&utm_medium=share"
+}
+],
+
+"Metapod 002/139":[
+{
+seller:"Top Deck",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/metapod-c-002-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172182485009895?extParam=ivf%3Dfalse%26keyword%3Dmetapod%26search_id%3D202603190224368C19F571E251E622BQV3%26src%3Dsearch&t_id=1773887102753&t_st=1&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+],
+
+"Butterfree 003/139":[
+{
+seller:"Topdeck",
+price:"Rp1.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/topdeck/butterfree-u-003-139-ikatan-takdir-sv9s-pokemon-tcg-indonesia-1731172132381754855?extParam=ivf%3Dfalse%26keyword%3Dbutterfree%26search_id%3D20260319023150577BCC914F9E551873ND%26src%3Dsearch&t_id=1773887102753&t_st=2&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+],
+
+"Mega Gardevoir ex Sar":[
+{
+seller:"Felt Tcg",
+price:"Rp1.000.000",
+platform:"Tokopedia",
+link:"https://www.tokopedia.com/felt/mega-gardevoir-ex-174-126-sar-evolusi-mega-ma1-kartu-pokemon-indonesia-1732665929498264731?extParam=ivf%3Dfalse%26keyword%3Dmega+gardevoir+sar%26search_id%3D20260316113210DB8E1AF0CB3ACA3AEHAW%26src%3Dsearch&t_id=1773660750790&t_st=1&t_pp=search_result&t_efo=search_pure_goods_card&t_ef=goods_search&t_sm=&t_spt=search_result"
+}
+]
+
+};
+
+
+
+function showSets(){
+
+let html="";
+
+sets.forEach(set=>{
+
+html+=`
+
+<button onclick="showSetCards('${set}')">
+${set}
+</button>
+
+`;
+
+});
+
+document.getElementById("sets").innerHTML=html;
+
+}
+
+
+function showSetCards(setName){
+
+let filtered = cards.filter(card => card.set === setName);
+
+let html="";
+
+filtered.forEach(card=>{
+
+html+=`
+
+<div class="card">
+
+<img src="${card.img}">
+
+<h3>${card.name}</h3>
+
+<p>${card.price}</p>
+
+<button onclick="showListings('${card.name}')">
+View Listings
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cards").innerHTML=html;
+
+}
+
+
+function showListings(cardName){
+
+let cardListings = listings[cardName];
+
+let html="<h3>"+cardName+" Listings</h3>";
+
+cardListings.forEach(listing=>{
+
+html+=`
+
+<div class="card">
+
+<p>${listing.seller}</p>
+
+<p>${listing.price}</p>
+
+<p>${listing.platform}</p>
+
+<a href="${listing.link}" target="_blank">
+<button>Buy</button>
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("listings").innerHTML=html;
+
+}
+
+showSets();
+
+</script>
+
+</body>
+
+</html>
